@@ -1,0 +1,45 @@
+import React from 'react'
+import ButtonBottoms from './ButtonBottoms'
+import Logo from './Logo'
+import NavHebergement from './NavHebergement'
+import Project from './Project'
+
+export const Modele1 = () => {
+    return (
+        <main>
+            <div className="project">
+                <NavHebergement />
+                <Logo />
+                <Project NumProject = {0} />
+                <ButtonBottoms left={'PageHebergement'} right={'/modele-2'} />
+            </div>
+        </main>
+    )
+}
+
+export const Modele2 = () => {
+    return (
+        <main>
+            <div className="project">
+                <NavHebergement />
+                <Logo />
+                <Project NumProject = {1} />
+                <ButtonBottoms left={'/modele-1'} right={'/modele-3'} />
+            </div>
+        </main>
+    )
+}
+
+export const Modele3 = () => {
+    return (
+        <main>
+            <div className="project">
+                <NavHebergement />
+                <Logo />
+                <Project NumProject = {2} />
+                <ButtonBottoms left={'/modele-2'} />
+            </div>
+        </main>
+    )
+}
+
