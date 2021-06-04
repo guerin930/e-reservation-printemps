@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import Video from '../../videos/video1.mp4'
+import Img from '../../images/screen.jpg'
 import {
     HeroContainer,
     HeroBg,
-    VideoBg,
     HeroContent,
     HeroH1,
     HeroP,
     HeroBtnWrapper,
     ArrowForward,
-    ArrowRight
+    ArrowRight,
+    ImgBg
 
 } from './HeroElements'
 import { Button } from '../ButtonElements'
@@ -25,7 +25,7 @@ const HeroSection = () => {
     return (
         <HeroContainer>
             <HeroBg>
-                <VideoBg autoPlay loop muted src={Video} type='video/mp4' />
+                <ImgBg src={Img} type='image/jpg' />
             </HeroBg>
             <HeroContent>
                 <HeroH1>Bienvenue a L'Hotel le printemps</HeroH1>

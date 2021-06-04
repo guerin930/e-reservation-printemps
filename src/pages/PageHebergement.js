@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 function PageHebergement() {
 
     const variantes = {
-        intinial: {
+        initial: {
             opacity: 0,
             transition: { duration: 0.5},
             x: 100,

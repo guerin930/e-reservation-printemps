@@ -7,28 +7,28 @@ const NavHebergement = () => {
             <ul>
                 <NavLink to="/" exact className="hover"
                     activeClassName="nav-active">
-                    <li>Acceuill</li>
+                    <li className="titre" >Acceuill</li>
                 </NavLink>
 
                 <li className="nav-portfolio">Visitez
                 <ul className="nav-projects">
                         <NavLink to="/modele-1" activeClassName="nav-active"
                             className="hover">
-                            <li>Chambre  régulière</li>
+                            <li className="titre">Chambre  régulière</li>
                         </NavLink>
                         <NavLink to="/modele-2" activeClassName="nav-active"
                             className="hover">
-                            <li>Chambre  familiale </li>
+                            <li className="titre">Chambre  familiale </li>
                         </NavLink>
                         <NavLink to="/modele-3" activeClassName="nav-active"
                             className="hover">
-                            <li>Suite</li>
+                            <li className="titre">Suite</li>
                         </NavLink>
                     </ul>
                 </li>
                 <NavLink to="/reservation" activeClassName="nav-active"
                     className="hover">
-                    <li>Reservez</li>
+                    <li className="titre">Reservez</li>
                 </NavLink>
             </ul>
         </div>

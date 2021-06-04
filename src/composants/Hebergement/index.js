@@ -11,7 +11,7 @@ export const Modele1 = () => {
                 <NavHebergement />
                 <Logo />
                 <Project NumProject = {0} />
-                <ButtonBottoms left={'PageHebergement'} right={'/modele-2'} />
+                <ButtonBottoms className="titre" left={'PageHebergement'} right={'/modele-2'} />
             </div>
         </main>
     )
@@ -24,7 +24,7 @@ export const Modele2 = () => {
                 <NavHebergement />
                 <Logo />
                 <Project NumProject = {1} />
-                <ButtonBottoms left={'/modele-1'} right={'/modele-3'} />
+                <ButtonBottoms className="titre" left={'/modele-1'} right={'/modele-3'} />
             </div>
         </main>
     )
@@ -37,7 +37,7 @@ export const Modele3 = () => {
                 <NavHebergement />
                 <Logo />
                 <Project NumProject = {2} />
-                <ButtonBottoms left={'/modele-2'} />
+                <ButtonBottoms className="titre" left={'/modele-2'} />
             </div>
         </main>
     )
