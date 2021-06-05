@@ -7,6 +7,7 @@ import PageAbonnement from './pages/PageAbonnement';
 import PageHebergement from './pages/PageHebergement';
 import { Modele1, Modele2, Modele3 } from './composants/Hebergement';
 import {AnimatePresence} from 'framer-motion';
+import PageConnexion from './pages/PageConnexion';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/modele-1" component={Modele1}/>
           <Route exact path="/modele-2" component={Modele2}/>
           <Route exact path="/modele-3" component={Modele3}/>
+          <Route exact path="/PageConnexion" component={PageConnexion} />
       </Switch>
     </Router>
     </AnimatePresence>
