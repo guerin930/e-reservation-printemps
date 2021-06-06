@@ -11,9 +11,9 @@
   src: url(./assets/fonts/JosefinSans-Bold.ttf);
 }
 
-$font-1: "font-1", sans-serif;
-$font-2: "font-2", serif;
-$font-3: "font-3", serif;
+$font-3: "font-1", sans-serif;
+$font-1: "font-2", serif;
+$font-2: "font-3", serif;
 
 
 $white: rgb(253, 253, 253);
@@ -21,8 +21,9 @@ $shadow: rgb(219, 218, 218);
 $color-1: #fafeff;
 $color-2: #00c1ec;
 $color-3: #e7f7fe;
+$color-4: #fdeeee;
 $color-5: rgb(40, 40, 40);
-$black: rgb(40, 40, 40);
+$black: rgb(0, 0, 0);
 $red: rgb(253, 87, 87);
 $green: rgb(47, 255, 82);
 $gradiant: linear-gradient(108deg, rgb(21, 224, 106) 0%, rgb(134, 241, 197) 100%);

@@ -105,7 +105,7 @@ const Contact = () => {
         <ul>
           <NavLink to="/" exact className="hover"
             activeClassName="nav-active">
-            <li>Acceuill</li>
+            <li className="titre">Acceuill</li>
           </NavLink>
         </ul>
       </div>

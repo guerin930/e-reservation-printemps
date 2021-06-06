@@ -91,17 +91,17 @@ const Navbar = ({toggle}) => {
                             spy={true}
                             exact='true' 
                             offset={-80}
-                            >Se connecter</NavLinks>
+                            >Espace-Client</NavLinks>
                         </NavItem>
                         <NavBtn>
                             <NavBtnLink 
-                            to="PageAbonnement"
+                            to="PageConnexion"
                             smooth={true} 
                             duration={500} 
                             spy={true}
                             exact='true' 
                             offset={-80}
-                            >S'abonner</NavBtnLink>
+                            >Se Connecter</NavBtnLink>
                         </NavBtn>
                     </NavMenu>
                 </NavbarContainer>

@@ -45,7 +45,7 @@ export const homeObj3 = {
     lightBg: true,
     lightText: false,
     lightTextDesc: false,
-    topLine: 'Se Connecter',
+    topLine: 'Espace-Client',
     ligneEnTete: "Nos hôteliers aussi ont des qualités incroyables ",
     description: "Connecter vous pour etre informer et profiter des prix promotionnels exclusifs",
     buttonLabel: 'Commencer maintenant',
