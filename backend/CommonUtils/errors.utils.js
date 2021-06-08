@@ -15,15 +15,18 @@ module.exports.signUpErrors = (err) => {
 
     if (err.code === 11000 && Object.keys(err.keyValue)[0].includes("pseudo"))
         errors.pseudo = 'Ce Nom est deja utilisé';
+
     return errors;
 };
 
 module.exports.signInErrors = (err) => {
     let errors = {email: '', password: ''}
 
-    if(err.message.includes("email"))
+    if(err.message.includes('email'))
         errors.email = 'Cet email est inconnu';
     
-    if(err.message.includes("password"))
-        errors.password = 'le mot de passe ne correspond pas ';
-}
+    if(err.message.includes('password'))
+        errors.password = 'Email ou mot de passe invalide ';
+
+    return errors;
+};

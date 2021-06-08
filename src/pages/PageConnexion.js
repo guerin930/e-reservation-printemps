@@ -1,5 +1,5 @@
 import React from 'react';
-import Profil from '../composants/connexion/Profil';
+import Profil from '../composants/authentification/Profil';
 
 const PageConnexion = () => {
     return (

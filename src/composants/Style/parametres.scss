@@ -79,3 +79,11 @@ main {
 .titre {
   color: $color-5;
 }
+.error {
+  color: red;
+  font-weight: bold;
+}
+.success {
+  color: green;
+  font-weight: bold;
+}

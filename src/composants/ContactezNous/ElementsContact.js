@@ -58,7 +58,7 @@ export const FormInput = styled.input`
  ::placeholder {
     color: rgb(190, 188, 188);
  };
- width: 90%;
+ width: 100%;
  margin: 0 auto;
  padding: 16px 0;
  :focus {outline: 0;}
@@ -73,7 +73,7 @@ export const FormTextArea = styled.textarea`
  ::placeholder {
     color: rgb(190, 188, 188);
  };
- width: 90%;
+ width: 100%;
  margin: 0 auto;
  resize: none;
  padding: 24px 0;
@@ -81,7 +81,7 @@ export const FormTextArea = styled.textarea`
 `
 export const EmailContent = styled.div`
  position: relative;
- width: 90%;
+ width: 100%;
  margin: 0 auto;
  input {
     width: 100%;

@@ -1,12 +1,12 @@
 import React from 'react'
-import Contact from '../composants/Contact'
+import ContactezNous from '../composants/ContactezNous'
 
 
 
 function PageContact() {
     return (
         <>
-          <Contact />  
+          <ContactezNous />  
         </>
     )
 }
