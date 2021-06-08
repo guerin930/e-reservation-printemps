@@ -25,11 +25,11 @@ const SignIn = () => {
                     emailError.innerHTML = res.data.errors.email;
                     passwordError.innerHTML = res.data.errors.password;
                 } else {
-                   
+                    window.location = '/';
                 }
             })
             .catch((err) => {
-                console.log(err); 
+                console.log(err);
             })
     };
 
@@ -45,7 +45,6 @@ const SignIn = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
             />
-            <br />
             <div className="email error"></div>
             <br />
             <label htmlFor="password">Password</label>
@@ -58,7 +57,6 @@ const SignIn = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
             />
-            <br />
             <div className="password error"></div>
             <br />
             <input type="submit" value="se connecter" />

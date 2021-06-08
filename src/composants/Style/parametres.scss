@@ -20,6 +20,7 @@ $white: rgb(253, 253, 253);
 $shadow: rgb(219, 218, 218);
 $color-1: #fafeff;
 $color-2: #00c1ec;
+$blue: #0494f3;
 $color-3: #e7f7fe;
 $color-4: #fdeeee;
 $color-5: rgb(40, 40, 40);
@@ -82,8 +83,29 @@ main {
 .error {
   color: red;
   font-weight: bold;
+  padding: 0.5em;
 }
 .success {
-  color: green;
+  color: $blue;
   font-weight: bold;
+  padding: 0.5em;
+}
+input[type="checkbox"] {
+  box-shadow: none;
+  width: 20px;
+  margin: 10px 0;
+}
+input[type="submit"] {
+  padding: 14px 20px;
+          margin: 0;
+          font-size: 1.1rem;
+          padding: 10px 20px;
+          font-family: $font-2;
+          cursor: pointer;
+          transition: 0.2s;
+          margin: 0;
+
+          &:hover {
+            background: $color-2;
+            color: $color-1; }
 }

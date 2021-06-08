@@ -19,7 +19,7 @@ module.exports.signUp = async (req, res) => {
     }
     catch(err) {
         const errors = signUpErrors(err);
-        res.status(500).send({errors})
+        res.status(201).send({errors})
     }
 }
 

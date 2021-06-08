@@ -1,31 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import Home from './pages';
-import PageContact from './pages/PageContact';
-import PageAbonnement from './pages/PageAbonnement';
-import PageHebergement from './pages/PageHebergement';
-import { Modele1, Modele2, Modele3 } from './composants/Hebergement';
-import {AnimatePresence} from 'framer-motion';
-import PageConnexion from './pages/PageConnexion';
+import { AnimatePresence } from 'framer-motion';
+import { UidContext } from './composants/AppContext';
+import Routes from './composants/routes/Routes';
+import axios from 'axios';
+
+
 
 function App() {
-  return (
+  const [uid, setuid] = useState(null);
+
+  useEffect(() => {
+    const fetchToken = async() => {
+      await axios({
+        method: "get",
+        url: `${process.env.REACT_APP_API_URL}jwtid`,
+        withCredentials: true
+      })
+      .then((res) => setuid(res.data))
+      .catch((err) => console.log("no token"))
+    }
+    fetchToken();
+  }, [uid]);
+
+return (
+  <UidContext.Provider value={uid}>
     <AnimatePresence>
-    <Router>
-      <Switch>
-          <Route path="/" component={Home} exact />
-          <Route path="/PageAbonnement" component={PageAbonnement} exact />
-          <Route path="/PageContact" component={PageContact} exact />
-          <Route path="/PageHebergement" component={PageHebergement} exact />
-          <Route exact path="/modele-1" component={Modele1}/>
-          <Route exact path="/modele-2" component={Modele2}/>
-          <Route exact path="/modele-3" component={Modele3}/>
-          <Route exact path="/PageConnexion" component={PageConnexion} />
-      </Switch>
-    </Router>
+      <Routes />
     </AnimatePresence>
-  );
+  </UidContext.Provider>
+);
 }
 
 export default App;
