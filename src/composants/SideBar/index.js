@@ -36,7 +36,7 @@ const SideBar = ({isOpen, toggle}) => {
                     </SideBarLink>
                     </SideBarMenu>
                     <SideBtnWrap>
-                        <SideBarRoute to="/identifier">
+                        <SideBarRoute to="/PageConnexion">
                             S'identifier
                         </SideBarRoute>
                     </SideBtnWrap>

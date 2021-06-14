@@ -15,7 +15,6 @@ $font-3: "font-1", sans-serif;
 $font-1: "font-2", serif;
 $font-2: "font-3", serif;
 
-
 $white: rgb(253, 253, 253);
 $shadow: rgb(219, 218, 218);
 $color-1: #fafeff;
@@ -97,15 +96,27 @@ input[type="checkbox"] {
 }
 input[type="submit"] {
   padding: 14px 20px;
-          margin: 0;
-          font-size: 1.1rem;
-          padding: 10px 20px;
-          font-family: $font-2;
-          cursor: pointer;
-          transition: 0.2s;
-          margin: 0;
+  margin: 0;
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  font-family: $font-2;
+  cursor: pointer;
+  transition: 0.2s;
+  margin: 0;
 
-          &:hover {
-            background: $color-2;
-            color: $color-1; }
+  &:hover {
+    background: $color-2;
+    color: $color-1;
+  }
+}
+.hpLogo {
+  color: #010606;
+  justify-self: flex-start;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  margin-left: 24px;
+  font-weight: bold;
+  text-decoration: none;
 }
