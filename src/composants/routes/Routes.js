@@ -6,6 +6,7 @@ import PageContact from '../../pages/PageContact'
 import PageHebergement from '../../pages/PageHebergement'
 import PageConnexion from '../../pages/PageConnexion'
 import { Modele1, Modele2, Modele3 } from '../Hebergement';
+import PageReservation from '../../pages/PageReservation';
 
 
 
@@ -22,6 +23,7 @@ const Routes = () => {
             <Route exact path="/modele-2" component={Modele2} />
             <Route exact path="/modele-3" component={Modele3} />
             <Route exact path="/PageConnexion" component={PageConnexion} />
+            <Route exact path="/PageReservation" component={PageReservation} />
           </Switch>
         </Router>
     );

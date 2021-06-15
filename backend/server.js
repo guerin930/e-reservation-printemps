@@ -3,12 +3,14 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 require('dotenv').config({path: './config/.env'}) // variable d'environnement
 const userRoutes = require('./routes/user.routes');
+const bookingRoutes = require('./routes/booking.route');
 require('./config/db');
 const {checkUser, requireAuth} = require('./middleware/auth.middleware');
 const cors = require('cors');
 
 const app = express();
 
+//cors permet de choisir le client de l'api
 const corsOptions = {
     origin: process.env.CLIENT_URL,
     credentials: true,
@@ -31,6 +33,7 @@ app.get("/jwtid", requireAuth, (req, res) => {
 
 //routes
 app.use('/api/user', userRoutes)
+app.use('/api/reservation', bookingRoutes)
 
 //serveur
 app.listen(process.env.PORT, () => {

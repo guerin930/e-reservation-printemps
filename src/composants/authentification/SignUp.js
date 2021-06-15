@@ -116,6 +116,7 @@ const SignUp = () => {
                         rel="noopener noreferrer">conditions générales</a></label>
                     <div className="terms error"></div>
                     <input type="submit" value="Valider la demande" />
+                    <div className="submit error"></div>
                 </form >
             )}
         </>

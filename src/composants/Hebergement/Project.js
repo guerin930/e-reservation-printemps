@@ -84,7 +84,7 @@ const Project = (props) => {
                     <img src={project.img} alt={project.title} />
                 </div>
                 <div className="button-container">
-                    <NavLink className="hover" to="/reservation" activeClassName="nav-active">
+                    <NavLink className="hover" to="/PageReservation" activeClassName="nav-active">
                         <span className="button"> Reservez </span>
                     </NavLink>
                 </div>
