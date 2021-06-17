@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 
-
 const Booking = () => {
     const [name, setname] = useState("");
     const [email, setemail] = useState("");
@@ -15,7 +14,7 @@ const Booking = () => {
     const [nbrAdult, setnbrAdult] = useState("");
     const [message, setmessage] = useState("");
     const [annulation, setannulation] = useState(false);
-    const [adresse, setadresse] = useState("")
+    const [adresse, setadresse] = useState("");
 
     return (
         <div className="home">
