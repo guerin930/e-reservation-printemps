@@ -1,24 +1,26 @@
 const mongoose = require('mongoose');
 const { isEmail } = require('validator');
 
+
 const BookingSchema = new mongoose.Schema(
     {
         startDate: {
             type: Date,
-            required: true
+            required: true,
+            unique: true
         },
 
         endDate: {
             type: Date,
-            required: true
+            required: true,
+            unique: true
         },
 
         name: {
             type: String,
             required: true,
             trim: true,
-            unique: true,
-            lowercase: true
+            uppercase: true
         },
 
         email: {
@@ -26,53 +28,40 @@ const BookingSchema = new mongoose.Schema(
             required: true,
             validate: [isEmail],
             lowercase: true,
-            unique: true,
             trim: true
         },
         phone: {
             type: Number,
             required: true,
-            unique: true,
-            trim: true
         },
         annulation: {
             type: Boolean,
             default: false,
-            unique: true,
-            required: true
+            required: false
         },
-        typeChambre: {
-            type: String,
-            unique: true,
-            required: true,
-            trim: true
+        nbrchambre: {
+            type: Number, required: true, default: "1"
         },
-        nbrChambre: {
-            type: Number,
-            unique: true,
-            required: true,
-            trim: true,
-            default: "1"
+        typechambre: {
+            type: String, required: true
         },
         nbrEnfant: {
             type: Number,
-            unique: true,
             required: true,
             trim: true,
             default: "0"
         },
         nbreAdult: {
             type: Number,
-            unique: true,
             required: true,
             trim: true,
             default: "1"
         },
-        message : {
+        message: {
             type: String,
             required: false,
             trim: true,
-            unique: true,
+            default: " ",
             lowercase: true
         }
     },

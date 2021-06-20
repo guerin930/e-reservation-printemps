@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 require('dotenv').config({path: './config/.env'}) // variable d'environnement
 const userRoutes = require('./routes/user.routes');
 const bookingRoutes = require('./routes/booking.route');
+const roomRoutes = require('./routes/room.route');
 require('./config/db');
 const {checkUser, requireAuth} = require('./middleware/auth.middleware');
 const cors = require('cors');
@@ -34,6 +35,7 @@ app.get("/jwtid", requireAuth, (req, res) => {
 //routes
 app.use('/api/user', userRoutes)
 app.use('/api/reservation', bookingRoutes)
+app.use('/api/chambre', roomRoutes)
 
 //serveur
 app.listen(process.env.PORT, () => {

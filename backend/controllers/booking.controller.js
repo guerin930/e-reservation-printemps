@@ -1,13 +1,12 @@
-const BookingModel = require('../model/reservation.model');
+const BookingModel = require('../model/booking.model');
 const objectID = require('mongoose').Types.ObjectId;
 
-module.exports.sendBooking = async(req, res) => {
-    const {startDate, endDate, name, email, phone, 
-        typeChambre, nbrChambre, nbrEnfant, nbrAdult, message } = req.body;
+module.exports.saveBooking = async(req, res) => {
+    const item = {startDate, endDate, name, email, phone, 
+        typechambre, nbrhambre, nbrEnfant, nbrAdult, message } = req.body;
 
     try {
-        const booking = await BookingModel.create({startDate, endDate, name, email, phone, 
-            typeChambre, nbrChambre, nbrEnfant, nbrAdult, message});
+        const booking = await BookingModel.create(item);
         res.status(200).json({booking : booking._id});
 
     } catch(err) {
@@ -47,8 +46,8 @@ module.exports.UpdateBooking = async(req, res) => {
                    name: req.body.name,
                    email: req.body.email,
                    phone: req.body.phone,
-                   typeChambre: req.body.typeChambre,
-                   nbrChambre: req.body.nbrChambre,
+                   typechambre: req.body.typeChambre,
+                   nbrchambre: req.body.nbrChambre,
                    nbrEnfant: req.body.nbrEnfant,
                    nbrAdult: req.body.nbrAdult,
                    message: req.body.message
@@ -80,7 +79,7 @@ module.exports.CancelBooking = async(req, res) => {
            {_id: req.params.id},
            {
                $set: {
-                    annulation: "false",
+                    annulation: "true",
                }
            },
            { new: true, upsert: true, setDefaultsOnInsert: true },

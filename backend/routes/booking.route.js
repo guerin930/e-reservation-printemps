@@ -2,7 +2,7 @@ const router = require('express').Router();
 const bookingController = require('../controllers/booking.controller');
 
 //submit booking
-router.post("/booking", bookingController.sendBooking);
+router.post("/booking", bookingController.saveBooking);
 router.get("/booking", bookingController.getAllBooking);
 router.get("/booking/:id", bookingController.currentBooking);
 router.put("/booking/", bookingController.UpdateBooking);
