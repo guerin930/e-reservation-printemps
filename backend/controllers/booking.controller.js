@@ -1,9 +1,10 @@
 const BookingModel = require('../model/booking.model');
 const objectID = require('mongoose').Types.ObjectId;
+const {bookingErrors} = require('../CommonUtils/errors.utils');
 
 module.exports.saveBooking = async(req, res) => {
-    const item = {startDate, endDate, name, email, phone, 
-        typechambre, nbrhambre, nbrEnfant, nbrAdult, message } = req.body;
+    const item = {startDate, endDate, fullname, email, phone, 
+        typechambre, nbrchambre, nbrEnfant, nbrAdult, message } = req.body;
 
     try {
         const booking = await BookingModel.create(item);
@@ -11,8 +12,8 @@ module.exports.saveBooking = async(req, res) => {
 
     } catch(err) {
         console.log(err);
-        res.status(500)
-        res.send(err.message)
+        const errors = bookingErrors(err)
+        res.status(500).send({errors})
     } 
 }
 

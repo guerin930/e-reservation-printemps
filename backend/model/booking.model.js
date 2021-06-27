@@ -16,7 +16,7 @@ const BookingSchema = new mongoose.Schema(
             unique: true
         },
 
-        name: {
+        fullname: {
             type: String,
             required: true,
             trim: true,
@@ -37,29 +37,25 @@ const BookingSchema = new mongoose.Schema(
         annulation: {
             type: Boolean,
             default: false,
-            required: false
         },
         nbrchambre: {
-            type: Number, required: true, default: "1"
+            type: Number, 
+            default: 1
         },
         typechambre: {
-            type: String, required: true
+            type: String,
+            default: "Chambre reguliere"
         },
         nbrEnfant: {
             type: Number,
-            required: true,
-            trim: true,
-            default: "0"
+            default: 0
         },
-        nbreAdult: {
+        nbrAdult: {
             type: Number,
-            required: true,
-            trim: true,
-            default: "1"
+            default: 1
         },
         message: {
             type: String,
-            required: false,
             trim: true,
             default: " ",
             lowercase: true

@@ -5,7 +5,7 @@ const DynamicText = () => {
 
 
   useEffect(() => {
-    let array = ["simple", "clear", "smart", "strong"];
+    let array = ["Simple", "Soft", "Smart"];
     let wordIndex = 0;
     let letterIndex = 0;
     const target = document.getElementById("text-target");

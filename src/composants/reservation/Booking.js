@@ -1,20 +1,65 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
+import Paiement from './Paiement';
 
 
 const Booking = () => {
-    const [name, setname] = useState("");
+    const [fullname, setfullname] = useState("");
     const [email, setemail] = useState("");
     const [phone, setphone] = useState("");
     const [startDate, setstartDate] = useState("");
     const [endDate, setendDate] = useState("");
-    const [typeChambre, settypeChambre] = useState("");
-    const [nbrChambre, setnbrChambre] = useState("");
+    const [typechambre, settypeChambre] = useState("");
+    const [nbrchambre, setnbrChambre] = useState("");
     const [nbrEnfant, setnbrEnfant] = useState("");
     const [nbrAdult, setnbrAdult] = useState("");
     const [message, setmessage] = useState("");
-    const [annulation, setannulation] = useState(false);
+    const [formSubmit, setformSubmit] = useState(false);
     const [adresse, setadresse] = useState("");
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const fullnameError = document.querySelector('.fullname.error')
+        const emailError = document.querySelector('.email.error')
+        const adresseError = document.querySelector('.adresse.error')
+        const phoneError = document.querySelector('.phone.error')
+        const startDateError = document.querySelector('.startDate.error')
+        const endDateError = document.querySelector('.endDate.error')
+
+        const today = new Date()
+        const start = new Date(startDate)
+        const end = new Date(endDate)
+        if (start.getTime() < today.getTime() || start.getTime() > end.getTime()) {
+            if (start.getTime() < today.getTime())
+                startDateError.innerHTML = "Veuillez choisir une date de depart correcte svp !"
+            if (start.getTime() > end.getTime())
+                endDateError.innerHTML = "Veuillez choisir une date d'arriver correcte svp !"
+            setTimeout(() => {
+                startDateError.innerHTML = ""
+                endDateError.innerHTML = ""
+            }, 3000)
+        } else {
+            await axios({
+                method: "post",
+                url: `${process.env.REACT_APP_API_URL}api/reservation/booking`,
+                data: {
+                    fullname, email, phone, startDate, endDate, typechambre, nbrchambre, nbrEnfant, nbrAdult, message, adresse
+                }
+            }).then((res) => {
+                console.log(res);
+                if (res.data.errors) {
+                    fullnameError.innerHTML = res.data.errors.fullname;
+                    emailError.innerHTML = res.data.errors.email;
+                    adresseError.innerHTML = res.data.errors.adresse;
+                    phoneError.innerHTML = res.data.errors.phone;
+                } else {
+                    setformSubmit(true)
+                }
+            }).catch((err) => { console.log(err); })
+        }
+    }
+
 
     return (
         <div>
@@ -26,9 +71,14 @@ const Booking = () => {
                     </NavLink>
                 </ul>
             </div>
-            <div className="book-form-content">
+            {(formSubmit) ? (
+                <>
+                    <Paiement />
+                    <span></span>
+                </>
+            ) : (<div className="book-form-content">
                 <div className="book-form">
-                    <form action="" id="formulaire-responsive" class="clearfix">
+                    <form action="" onSubmit={handleSubmit} id="formulaire-responsive" class="clearfix">
                         <div className="wpcf7">
                             <div class="rang-form">
                                 <div className="demi-colonne">
@@ -37,13 +87,13 @@ const Booking = () => {
                                     <br />
                                     <input
                                         type="text"
-                                        name="name"
-                                        id="name"
-                                        onChange={(e) => setname(e.target.value)}
-                                        value={name}
+                                        name="fullname"
+                                        id="fullname"
+                                        onChange={(e) => setfullname(e.target.value)}
+                                        value={fullname}
                                         autoComplete="off"
                                     />
-                                    <div className="name error"></div>
+                                    <div className="fullname error"></div>
                                 </div>
                                 <div className="demi-colonne">
                                     <label htmlFor="email"> Email </label>
@@ -62,19 +112,20 @@ const Booking = () => {
                             </div>
                             <div class="rang-form">
                                 <div className="demi-colonne">
-                                    <label htmlFor="typeChambre"> *Choisissez le type de chambre </label>
+                                    <label htmlFor="typechambre"> *Choisissez le type de chambre </label>
                                     <br />
                                     <br />
                                     <select
-                                        name="typeChambre"
-                                        id="typeChambre"
+                                        name="typechambre"
+                                        id="typechambre"
+                                        value={typechambre}
                                         onChange={(e) => settypeChambre(e.target.value)}
                                     >
-                                        <option value={typeChambre}>Chambre reguliere</option>
-                                        <option value={typeChambre}>Chambre Familiale</option>
-                                        <option value={typeChambre}>Suite</option>
+                                        <option >Chambre reguliere</option>
+                                        <option >Chambre Familiale</option>
+                                        <option >Suite</option>
+                                        {console.log(typechambre)}
                                     </select>
-                                    <div className="typeChambre error"></div>
                                 </div>
                                 <div className="demi-colonne">
                                     <label htmlFor="nbrAdult"> *Nombre d'adulte(s) </label>
@@ -83,14 +134,14 @@ const Booking = () => {
                                     <select
                                         name="nbrAdult"
                                         id="nbrAdult"
+                                        value={nbrAdult}
                                         onChange={(e) => setnbrAdult(e.target.value)}
                                     >
-                                        <option value={nbrAdult}>1</option>
-                                        <option value={nbrAdult}>2</option>
-                                        <option value={nbrAdult}>3</option>
-                                        <option value={nbrAdult}>4</option>
+                                        <option >1</option>
+                                        <option >2</option>
+                                        <option >3</option>
+                                        <option >4</option>
                                     </select>
-                                    <div className="nbrAdult error"></div>
                                 </div>
                             </div>
 
@@ -126,36 +177,26 @@ const Booking = () => {
                             </div>
                             <div class="rang-form">
                                 <div class="demi-colonne">
-                                    <label htmlFor="nbrChambre"> *Nombre de chambre(s) </label>
+                                    <label htmlFor="nbrchambre"> *Nombre de chambre(s) </label>
                                     <br />
                                     <br />
                                     <select
-                                        name="nbrChambre"
-                                        id="nbrChambre"
+                                        name="nbrchambre"
+                                        id="nbrchambre"
+                                        value={nbrchambre}
                                         onChange={(e) => setnbrChambre(e.target.value)}
                                     >
-                                        <option value={nbrChambre}>1</option>
-                                        <option value={nbrChambre}>2</option>
-                                        <option value={nbrChambre}>3</option>
-                                        <option value={nbrChambre}>4</option>
-                                        <option value={nbrChambre}>5</option>
-                                        <option value={nbrChambre}>6</option>
-                                        <option value={nbrChambre}>7</option>
-                                        <option value={nbrChambre}>8</option>
-                                        <option value={nbrChambre}>9</option>
-                                        <option value={nbrChambre}>10</option>
-                                        <option value={nbrChambre}>11</option>
-                                        <option value={nbrChambre}>12</option>
-                                        <option value={nbrChambre}>13</option>
-                                        <option value={nbrChambre}>14</option>
-                                        <option value={nbrChambre}>15</option>
-                                        <option value={nbrChambre}>16</option>
-                                        <option value={nbrChambre}>17</option>
-                                        <option value={nbrChambre}>18</option>
-                                        <option value={nbrChambre}>19</option>
-                                        <option value={nbrChambre}>20</option>
+                                        <option >1</option>
+                                        <option >2</option>
+                                        <option >3</option>
+                                        <option >4</option>
+                                        <option >5</option>
+                                        <option >6</option>
+                                        <option >7</option>
+                                        <option >8</option>
+                                        <option >9</option>
+                                        <option >10</option>
                                     </select>
-                                    <div className="not error"></div>
                                 </div>
                                 <div class="demi-colonne">
                                     <label htmlFor="nbrEnfant"> *Nombre d'enfant(s) </label>
@@ -164,13 +205,14 @@ const Booking = () => {
                                     <select
                                         name="nbrAdult"
                                         id="nbrAdult"
+                                        value={nbrEnfant}
                                         onChange={(e) => setnbrEnfant(e.target.value)}
                                     >
-                                        <option value={nbrEnfant}>1</option>
-                                        <option value={nbrEnfant}>2</option>
-                                        <option value={nbrEnfant}>3</option>
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
                                     </select>
-                                    <div className="not error"></div>
                                 </div>
                             </div>
                             <div class="rang-form">
@@ -181,10 +223,11 @@ const Booking = () => {
                                         type="datetime-local"
                                         name="startDate"
                                         id="startDate"
+
                                         onChange={(e) => setstartDate(e.target.value)}
                                         value={startDate}
                                     />
-                                    <div className="not error"></div>
+                                    <div className="startDate error"></div>
                                 </div>
                                 <div className="demi-colonne">
                                     <label htmlFor="endDate"> *Date de depart </label>
@@ -196,7 +239,7 @@ const Booking = () => {
                                         onChange={(e) => setendDate(e.target.value)}
                                         value={endDate}
                                     />
-                                    <div className="not error"></div>
+                                    <div className="endDate error"></div>
                                 </div>
                             </div>
                             <div class="rang-form">
@@ -221,7 +264,7 @@ const Booking = () => {
                         </div>
                     </form>
                 </div>
-            </div>
+            </div>)}
         </div>
     );
 };

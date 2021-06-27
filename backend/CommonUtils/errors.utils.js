@@ -20,13 +20,30 @@ module.exports.signUpErrors = (err) => {
 };
 
 module.exports.signInErrors = (err) => {
-    let errors = {email: '', password: ''}
+    let errors = { email: '', password: '' }
 
-    if(err.message.includes('email'))
+    if (err.message.includes('email'))
         errors.email = 'Cet email est inconnu';
-    
-    if(err.message.includes('password'))
+
+    if (err.message.includes('password'))
         errors.password = 'Email ou mot de passe invalide ';
 
     return errors;
 };
+module.exports.bookingErrors = (err) => {
+    let errors = { fullname: '', email: '', adresse: '', phone: '' }
+
+    if (err.message.includes('fullname'))
+        errors.fullname = 'Veuillez entrer un nom Svp !';
+
+    if (err.message.includes('email'))
+        errors.email = 'Veuillez remplir ce champ Svp !';
+
+    if (err.message.includes('adresse'))
+        errors.adresse = 'Veuillez entrer une adresse !';
+
+    if (err.message.includes('phone'))
+        errors.phone = 'Veuillez remplir ce champ Svp !';
+
+    return errors;
+}
