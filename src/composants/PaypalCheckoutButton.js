@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import paypal from 'paypal-checkout';
 
 
-const PaypalCheckoutButton = ({order}) => {
+const PaypalCheckoutButton = ({order}, valid) => {
     const paypalconfig = {
         currency: 'CAD',
         env: 'sandbox',
@@ -46,20 +46,24 @@ const PaypalCheckoutButton = ({order}) => {
         .then(response => {
             console.log(response);
             alert(`paiement effectué avec success, ID: ${response.id}`);
+            valid = true
         })
         .catch(error => {
             console.log(error);
             alert('une erreur est survenue leur du traitement de paiement avec paypal');
+            valid = false
         });
     };
 
     const onError = (error) => {
         console.log(error);
         alert(` le paiment n'a pas été effectué `);
+        valid = false
     };
 
     const onCancel = (data, actions) => {
         alert(`la paiement a été annulé `);
+        valid = false
     };
     
     return (

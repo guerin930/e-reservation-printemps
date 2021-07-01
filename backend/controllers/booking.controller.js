@@ -1,112 +1,116 @@
 const BookingModel = require('../model/booking.model');
 const objectID = require('mongoose').Types.ObjectId;
-const {bookingErrors} = require('../CommonUtils/errors.utils');
+const { bookingErrors } = require('../CommonUtils/errors.utils');
 
-module.exports.saveBooking = async(req, res) => {
-    const item = {startDate, endDate, fullname, email, phone, 
-        typechambre, nbrchambre, nbrEnfant, nbrAdult, message } = req.body;
+module.exports.saveBooking = async (req, res) => {
+    const item = {
+        startDate, endDate, fullname, email, phone,
+        typechambre, nbrchambre, nbrEnfant, nbrAdult, message
+    } = req.body;
 
     try {
         const booking = await BookingModel.create(item);
-        res.status(200).json({booking : booking._id});
+        res.status(200).json({ booking: booking._id });
 
-    } catch(err) {
+    } catch (err) {
         console.log(err);
         const errors = bookingErrors(err)
-        res.status(500).send({errors})
-    } 
+        res.status(500).send({ errors })
+    }
 }
 
-module.exports.getAllBooking = async(req, res) => {
+module.exports.getAllBooking = async (req, res) => {
     const bookings = await BookingModel.find().select();
     res.status(200).json(bookings);
-} 
+}
 
-module.exports.currentBooking = async(req, res) => {
+module.exports.currentBooking = async (req, res) => {
     console.log(req.params.id);
-    if(!objectID.isValid(req.params.id))
-    return res.status(400).send('ID inconnu :' + req.params.id);
+    if (!objectID.isValid(req.params.id))
+        return res.status(400).send('ID inconnu :' + req.params.id);
 
     BookingModel.findById(req.params.id, (err, res) => {
-        if(!err) res.send(docs);
+        if (!err) res.send(docs);
         else console.log('ID inconnu : ' + err);
     }).select('-_v');
 
 }
 
-module.exports.UpdateBooking = async(req, res) => {
-    
-    
-    try{
-       await BookingModel.findByIdAndUpdate(
-           req.body._id,
-           {
-               $set: {
-                   startDate: req.body.startDate,
-                   endDate: req.body.endDate,
-                   name: req.body.name,
-                   email: req.body.email,
-                   phone: req.body.phone,
-                   typechambre: req.body.typeChambre,
-                   nbrchambre: req.body.nbrChambre,
-                   nbrEnfant: req.body.nbrEnfant,
-                   nbrAdult: req.body.nbrAdult,
-                   message: req.body.message
-               }
-           },
-           { new: true, upsert: true, setDefaultsOnInsert: true },
-           (err, docs) => {
-            if(!err) return res.send(docs);
-            if(err) return res.status(500).send({ message: err});
-        }
-       ).select('-_v')
+module.exports.UpdateBooking = async (req, res) => {
+    console.log(req.params.id);
+    if (!objectID.isValid(req.params.id))
+        return res.status(400).send('ID inconnu :' + req.params.id);
 
-    }catch(err) {
+    try {
+        await BookingModel.findByIdAndUpdate(
+            { _id: req.params.id },
+            {
+                $set: {
+                    startDate: req.body.startDate,
+                    endDate: req.body.endDate,
+                    fullname: req.body.fullname,
+                    email: req.body.email,
+                    phone: req.body.phone,
+                    typechambre: req.body.typechambre,
+                    nbrchambre: req.body.nbrchambre,
+                    nbrEnfant: req.body.nbrEnfant,
+                    nbrAdult: req.body.nbrAdult,
+                    message: req.body.message
+                }
+            },
+            { new: true, upsert: true, setDefaultsOnInsert: true },
+            (err, docs) => {
+                if (!err) return res.send(docs);
+                if (err) return res.status(500).send({ message: err });
+            }
+        ).select('-_v')
+
+    } catch (err) {
         console.log(err);
-        res.status(500)
-        res.send(err.message)
-    } 
-     
+        const errors = bookingErrors(err)
+        res.status(500).send({ errors })
+    }
+
 }
 
-module.exports.CancelBooking = async(req, res) => {
-    
-    console.log(req.params.id);
-    if(!objectID.isValid(req.params.id))
-    return res.status(400).send('ID inconnu :' + req.params.id);
+module.exports.CancelBooking = async (req, res) => {
 
-    try{
+    console.log(req.params.id);
+    if (!objectID.isValid(req.params.id))
+        return res.status(400).send('ID inconnu :' + req.params.id);
+
+    try {
         await BookingModel.findByIdAndUpdate(
-           {_id: req.params.id},
-           {
-               $set: {
+            { _id: req.params.id },
+            {
+                $set: {
                     annulation: "true",
-               }
-           },
-           { new: true, upsert: true, setDefaultsOnInsert: true },
-           (err, docs) => {
-            if(!err) return res.send(docs);
-            if(err) return res.status(500).send({ message: err});
-        }
-       ).select('-_v')
+                }
+            },
+            { new: true, upsert: true, setDefaultsOnInsert: true },
+            (err, docs) => {
+                if (!err) return res.send(docs);
+                if (err) return res.status(500).send({ message: err });
+            }
+        ).select('-_v')
 
-    }catch(err) {
+    } catch (err) {
         console.log(err);
         res.status(500)
         res.send(err.message)
-    } 
-} 
-module.exports.DeleteBooking = async(req, res) => {
+    }
+}
+module.exports.DeleteBooking = async (req, res) => {
     console.log(req.params.id);
-    if(!objectID.isValid(req.params.id))
-    return res.status(400).send('ID inconnu :' + req.params.id);
+    if (!objectID.isValid(req.params.id))
+        return res.status(400).send('ID inconnu :' + req.params.id);
 
-    try{
-        await BookingModel.deleteOne({_id: req.params.id})
-        res.status(200).json({ message: "Successfully deleted. "});
-    } catch(err) {
+    try {
+        await BookingModel.deleteOne({ _id: req.params.id })
+        res.status(200).json({ message: "Successfully deleted. " });
+    } catch (err) {
         console.log(err);
         res.status(500)
         res.send(err.message)
-    } 
+    }
 }
