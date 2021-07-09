@@ -51,6 +51,9 @@ const Footer = () => {
                                 <FooterLink to="/">Direction</FooterLink>
                                 <FooterLink to="/">Cooperation</FooterLink>
                                 <FooterLink to="/">Internationale</FooterLink>
+                                <a className="footerlink" href="https://pixabay.com/fr/users/hans-2/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1174132">
+                                    Image par Hans Braxmeier de Pixabay</a>
+                                    
                         </FooterLinksItems>
                         <FooterLinksItems>
                             <FooterLinkTitle>Reseau Sociaux </FooterLinkTitle>

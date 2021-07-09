@@ -24,6 +24,10 @@ const NavHebergement = () => {
                             className="hover">
                             <li className="titre">Suite</li>
                         </NavLink>
+                        <NavLink to="/modele-4" activeClassName="nav-active"
+                            className="hover">
+                            <li className="titre">Salle des fetes</li>
+                        </NavLink>
                     </ul>
                 </li>
                 <NavLink to="/PageReservation" activeClassName="nav-active"

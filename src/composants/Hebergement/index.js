@@ -37,9 +37,21 @@ export const Modele3 = () => {
                 <NavHebergement />
                 <Logo />
                 <Project NumProject = {2} />
-                <ButtonBottoms className="titre" left={'/modele-2'} />
+                <ButtonBottoms className="titre" left={'/modele-2'} right={'/modele-4'} />
             </div>
         </main>
     )
 }
 
+export const Modele4 = () => {
+    return (
+        <main>
+            <div className="project">
+                <NavHebergement />
+                <Logo />
+                <Project NumProject = {3} />
+                <ButtonBottoms className="titre" left={'/modele-3'} />
+            </div>
+        </main>
+    )
+}

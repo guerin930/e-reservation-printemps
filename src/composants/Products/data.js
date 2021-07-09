@@ -13,7 +13,7 @@ export const productData = [
         desc: `Le ndolè est une saucé très apprecié au cameroun
         Il tres facile á réaliser et s'accompagne avec des bananes plantains cuits
          vapeur ou frites, du baton de manioc et du riz...faites vous plaisir `,
-        price: '1000 FCFA',
+        price: '1500 FCFA',
         Button: 'Ajouter au Séjour'
     },
     {

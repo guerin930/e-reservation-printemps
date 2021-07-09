@@ -5,7 +5,7 @@ const { bookingErrors } = require('../CommonUtils/errors.utils');
 module.exports.saveBooking = async (req, res) => {
     const item = {
         startDate, endDate, fullname, email, phone,
-        typechambre, nbrchambre, nbrEnfant, nbrAdult, message
+        typechambre, nbrchambre, nbrEnfant, nbrAdult, message, NetApayer
     } = req.body;
 
     try {
@@ -55,7 +55,8 @@ module.exports.UpdateBooking = async (req, res) => {
                     nbrchambre: req.body.nbrchambre,
                     nbrEnfant: req.body.nbrEnfant,
                     nbrAdult: req.body.nbrAdult,
-                    message: req.body.message
+                    message: req.body.message,
+                    NetApayer: req.body.NetApayer
                 }
             },
             { new: true, upsert: true, setDefaultsOnInsert: true },

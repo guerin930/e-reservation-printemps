@@ -59,6 +59,10 @@ const BookingSchema = new mongoose.Schema(
             trim: true,
             default: " ",
             lowercase: true
+        },
+        NetApayer: {
+            type: String,
+            required : true
         }
     },
     {

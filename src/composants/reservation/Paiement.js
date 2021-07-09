@@ -2,22 +2,38 @@ import React from 'react';
 import Img from '../../images/customers/transfer.svg'
 import PaypalCheckoutButton from '../PaypalCheckoutButton';
 
-
 const Paiement = ({ datafind }) => {
-    let start = datafind.startDate
-    let end = datafind.endDate
+    const fullname = datafind.fullname;
+    const email = datafind.email;
+    const phone = datafind.phone;
+    const startDate = datafind.startDate;
+    const endDate = datafind.endDate;
+    const typechambre = datafind.typechambre;
+    const nbrchambre = datafind.nbrchambre;
+    const nbrEnfant = datafind.nbrEnfant;
+    const nbrAdult = datafind.nbrAdult;
+    const message = datafind.message;
+    const adresse = datafind.adresse;
+    const NetApayer = datafind.total;
+    let start = new Date(datafind.startDate)
+    let end = new Date(datafind.endDate)
 
     const order = {
         customer: `Mr/Mdme ${datafind.fullname}`,
-        total: datafind.total,
+        total: datafind.total/430,
         items: [{
             sku: 'reservation',
             name: datafind.typechambre,
             price: datafind.total / datafind.nbrchambre,
             quantity: datafind.nbrchambre,
-            currency: 'XFA'
+            currency: 'FCFA'
         }]
     };
+    const data = {
+        fullname, email, phone, startDate, endDate, typechambre, nbrchambre, nbrEnfant, nbrAdult, message, adresse, NetApayer
+    }
+
+
 
     return (
         <div className="profil-page">
@@ -28,7 +44,7 @@ const Paiement = ({ datafind }) => {
                         <div class="rang-form">
                             <div className="demi-colonne">
                                 <label className="book-lbl" htmlFor="name">
-                                    Mr/Mdme : {datafind.fullname} </label>
+                                    Mr/Mdme :  {datafind.fullname} </label>
                             </div>
                             <div className="demi-colonne">
                                 <label className="book-lbl" htmlFor="name">
@@ -57,12 +73,12 @@ const Paiement = ({ datafind }) => {
                         </div>
                         <div class="rang-form">
                             <div className="colonne">
-                            <p> Votre Séjour date du  : {start} au {end} </p>
+                                <p> Votre Séjour date du  : {start.toDateString()} au {end.toDateString()} </p>
                             </div>
                         </div>
                         <div class="rang-form">
                             <div className="colonne">
-                                <p> Votre Facture est de : {datafind.total} XFA veuillez passez au paiment</p>
+                                <p> Votre Facture est de : {datafind.total} FCFA veuillez passez au paiment</p>
                                 <br />
                                 <p>Agréable séjour !</p>
                             </div>
@@ -75,19 +91,15 @@ const Paiement = ({ datafind }) => {
                         </div>
                         <div class="rang-form">
                             <div className="colonne">
-                                <PaypalCheckoutButton order={order} />
+                                <PaypalCheckoutButton order={order} data={data} />
                             </div>
-                        </div>
-                        <div className="colonne">
-                            <input className="wpcf7-submit" type="submit" value="Valider la reservation" />
-                            <div className="submit error"></div>
                         </div>
                         <p>Merci de nous faire confiance </p>
                     </div>
                 </div>
-            </div>
-            <div className="img-container">
-                <img src={Img} alt="login" />
+                <div className="img-container">
+                    <img src={Img} alt="login" />
+                </div>
             </div>
         </div>
     );

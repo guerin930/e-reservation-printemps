@@ -1,9 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import paypal from 'paypal-checkout';
+import axios from 'axios';
 
 
-const PaypalCheckoutButton = ({order}, valid) => {
+const PaypalCheckoutButton = ({order}, {data}) => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await axios({
+            method: "post",
+            url: `${process.env.REACT_APP_API_URL}api/reservation/booking`,
+            data: {data}
+        }).then((res) => {
+            console.log(res);
+        }).catch((err) => { console.log(err); })
+    }
     const paypalconfig = {
         currency: 'CAD',
         env: 'sandbox',
@@ -28,7 +39,7 @@ const PaypalCheckoutButton = ({order}, valid) => {
                         total: order.total,
                         currency: paypalconfig.currency,
                     },
-                    description: "test",
+                    description: "paiement reservation",
                     custom: order.customer || '',
                     items_list: {
                         items: order.items
@@ -45,25 +56,22 @@ const PaypalCheckoutButton = ({order}, valid) => {
         return actions.payment.execute()
         .then(response => {
             console.log(response);
-            alert(`paiement effectué avec success, ID: ${response.id}`);
-            valid = true
+            alert(`paiement effectué avec success, ID: ${response.id} , votre reservation a été validé a bientot`);
+            handleSubmit() 
         })
         .catch(error => {
             console.log(error);
             alert('une erreur est survenue leur du traitement de paiement avec paypal');
-            valid = false
         });
     };
 
     const onError = (error) => {
         console.log(error);
         alert(` le paiment n'a pas été effectué `);
-        valid = false
     };
 
     const onCancel = (data, actions) => {
         alert(`la paiement a été annulé `);
-        valid = false
     };
     
     return (

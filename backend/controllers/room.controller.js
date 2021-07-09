@@ -2,7 +2,7 @@ const RoomModel = require('../model/room.model');
 const objectID = require('mongoose').Types.ObjectId;
 
 module.exports.saveRoom = async (req, res) => {
-    const items = { numChambre, typeChambre, price } = req.body;
+    const items = { numChambre, typeChambre, price, max } = req.body;
 
     try {
         const room = await RoomModel.create(items);
@@ -40,9 +40,7 @@ module.exports.updateRoom = async (req, res) => {
             { _id: req.params.id },
             {
                 $set: {
-                    typeChambre: req.body.typeChambre,
-                    price: req.body.price,
-                    aviable: req.body.aviable
+                    max: req.body.max
                 },
             },
             { new: true, upsert: true, setDefaultsOnInsert: true },
